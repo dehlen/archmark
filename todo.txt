@@ -1,0 +1,7 @@
+import functionality
+option to change title from web ui
+multiple tags instead of one category
+favicons
+update styling more like pinboard
+add read status/archive
+add favorites
