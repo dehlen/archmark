@@ -30,7 +30,7 @@ func New() Service {
 type Service struct{}
 
 func (*Service) FetchDetails(ctx context.Context, url string) (*ArchivedPage, error) {
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, strings.TrimSpace(url), nil)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create http request. err: %w", err)
 	}
