@@ -5,11 +5,9 @@ import {
   ActionIcon,
   Anchor,
   AppShell,
-  Burger,
   ColorScheme,
   Container,
   Header,
-  MediaQuery,
   Space,
   Title,
   useMantineTheme,
@@ -21,7 +19,6 @@ import ArchivedList from '../ArchivedList';
 
 const App = () => {
   const theme = useMantineTheme();
-  const [opened, setOpened] = useState(false);
 
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: 'mantine-color-scheme',
@@ -47,30 +44,20 @@ const App = () => {
           <div
             style={{ display: 'flex', alignItems: 'center', height: '100%' }}
           >
-            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-              <Burger
-                opened={opened}
-                onClick={() => setOpened(o => !o)}
-                size="sm"
-                color={theme.colors.gray[6]}
-                mr="xl"
-              />
-            </MediaQuery>
-
             <Anchor href="/#/" underline={false}>
-              <Title order={3} weight={300}>
-                archmark
+              <Title order={6} weight={500}>
+                home
               </Title>
             </Anchor>
             <Space w="xl" />
             <Anchor href="/#/bookmark" underline={false}>
-              <Title order={6} weight={300}>
-                new bookmark
+              <Title order={6} weight={500}>
+                add url
               </Title>
             </Anchor>
             <Space w="xl" />
             <Anchor href="/#/deleted" underline={false}>
-              <Title order={6} weight={300}>
+              <Title order={6} weight={500}>
                 deleted
               </Title>
             </Anchor>

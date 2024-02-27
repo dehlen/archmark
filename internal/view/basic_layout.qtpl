@@ -6,7 +6,6 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta name="csrf-token" content="{%s csrfToken %}">
       <title>{%s title %}</title>
-      <link rel="stylesheet" type="text/css" href="/css/fonts.css">
     </head>
     <body>
       {%s= content %}

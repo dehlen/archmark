@@ -22,11 +22,11 @@ h4,
 h5,
 h6,
 a{
-  font-family: "Montserrat", sans-serif;
+  font-family: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji";
 }
 
 p {
-  font-family: "PT Sans", sans-serif;
+  font-family: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji";
 }
 
 .uk-input, .uk-input:focus {

@@ -34,8 +34,6 @@ const StyledApp = () => {
         withNormalizeCSS
         theme={{
           colorScheme,
-          fontFamily: 'PT Sans, sans-serif',
-          headings: { fontFamily: 'Montserrat, sans-serif' },
         }}
       >
         <App />

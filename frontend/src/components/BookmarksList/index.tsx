@@ -2,7 +2,6 @@ import React, { ChangeEvent, useCallback, useMemo } from 'react';
 import {
   ActionIcon,
   Anchor,
-  Box,
   Button,
   Flex,
   MediaQuery,
@@ -96,105 +95,97 @@ const BookmarksList = ({
       )}
       {bookmarks &&
         bookmarks.map((b, i) => (
-          <Flex direction="row" mb="lg">
-            <Text size="sm" mt="xs">
-              {(pageNumber - 1) * pageSize + i + 1}.
-            </Text>
-            <Space w="sm" />
-            <Flex direction="column" mb="lg">
-              <Anchor
-                underline={false}
-                color={theme.colorScheme === 'dark' ? '#dddddd' : '#444444'}
-                href={b.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {b.title ? (
-                  <Title order={3} size={24} weight={300}>
-                    {b.title}
-                  </Title>
-                ) : (
-                  <URLDisplay colorScheme={theme.colorScheme} value={b.url} />
-                )}
-              </Anchor>
-              {b.title && (
-                <Box mt="xs">
-                  <URLDisplay colorScheme={theme.colorScheme} value={b.url} />
-                </Box>
+          <Flex direction="column" mb="lg">
+            <Anchor
+              underline={false}
+              color={theme.colorScheme === 'dark' ? '#dddddd' : '#444444'}
+              href={b.url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {b.title ? (
+                <Title order={3} size={24} weight={500}>
+                  {b.title}
+                </Title>
+              ) : (
+                <URLDisplay colorScheme={theme.colorScheme} value={b.url} />
               )}
-              <Flex direction="row" wrap="wrap" mt="xs">
-                <MediaQuery smallerThan="lg" styles={{ display: 'none' }}>
-                  <Flex>
-                    <Text
-                      color={
-                        theme.colorScheme === 'dark' ? '#999999' : '#555555'
-                      }
-                    >
-                      added {moment(b.created_at).toNow(true)} ago
-                    </Text>
-                    <Text mx="xs">⚬</Text>
-                  </Flex>
-                </MediaQuery>
-                {allowCategoryChange && (
-                  // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-                  <Anchor
-                    underline={false}
-                    onClick={() => showCategoryModal(b.id)}
+            </Anchor>
+            {b.title && (
+              <URLDisplay colorScheme={theme.colorScheme} value={b.url} />
+            )}
+            <Flex direction="row" wrap="wrap">
+              <MediaQuery smallerThan="lg" styles={{ display: 'none' }}>
+                <Flex>
+                  <Text
+                    color={
+                      theme.colorScheme === 'dark' ? '#999999' : '#555555'
+                    }
                   >
-                    <Text>{b.category ? b.category : 'Uncategorized'}</Text>
-                  </Anchor>
-                )}
-                {!allowCategoryChange && (
+                    added {moment(b.created_at).toNow(true)} ago
+                  </Text>
+                  <Text mx="xs">·</Text>
+                </Flex>
+              </MediaQuery>
+              {allowCategoryChange && (
+                // eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+                <Anchor
+                  underline={false}
+                  onClick={() => showCategoryModal(b.id)}
+                >
                   <Text>{b.category ? b.category : 'Uncategorized'}</Text>
-                )}
+                </Anchor>
+              )}
+              {!allowCategoryChange && (
+                <Text>{b.category ? b.category : 'Uncategorized'}</Text>
+              )}
 
-                <>
-                  <Text mx="xs">⚬</Text>
-                  <Menu shadow="md" width={200}>
-                    <Menu.Target>
-                      <Anchor underline={false}>Options</Anchor>
-                    </Menu.Target>
+              <>
+                <Text mx="xs">·</Text>
+                <Menu shadow="md" width={200}>
+                  <Menu.Target>
+                    <Anchor underline={false}>Options</Anchor>
+                  </Menu.Target>
 
-                    <Menu.Dropdown>
-                      {b.file_path && (
-                        <Menu.Item
-                          icon={<IconDeviceFloppy size={14} />}
-                          onClick={() =>
-                            window.open(`/uploads/${b.file_path}`, '_blank')
-                          }
-                        >
-                          Open cached
-                        </Menu.Item>
-                      )}
-                      {allowCategoryChange && (
-                        <Menu.Item
-                          icon={<IconCategory size={14} />}
-                          onClick={() => showCategoryModal(b.id)}
-                        >
-                          Change category
-                        </Menu.Item>
-                      )}
-                      {showArchiveButton && (
-                        <Menu.Item
-                          color="red"
-                          icon={<IconTrash size={14} />}
-                          onClick={() => showDeleteModal(b)}
-                        >
-                          Delete
-                        </Menu.Item>
-                      )}
-                      {showUnarchiveButton && (
-                        <Menu.Item
-                          icon={<IconRestore size={14} />}
-                          onClick={() => unarchiveClicked(b.id)}
-                        >
-                          Restore
-                        </Menu.Item>
-                      )}
-                    </Menu.Dropdown>
-                  </Menu>
-                </>
-              </Flex>
+                  <Menu.Dropdown>
+                    {b.file_path && (
+                      <Menu.Item
+                        icon={<IconDeviceFloppy size={14} />}
+                        onClick={() =>
+                          window.open(`/uploads/${b.file_path}`, '_blank')
+                        }
+                      >
+                        Open cached
+                      </Menu.Item>
+                    )}
+                    {allowCategoryChange && (
+                      <Menu.Item
+                        icon={<IconCategory size={14} />}
+                        onClick={() => showCategoryModal(b.id)}
+                      >
+                        Change category
+                      </Menu.Item>
+                    )}
+                    {showArchiveButton && (
+                      <Menu.Item
+                        color="red"
+                        icon={<IconTrash size={14} />}
+                        onClick={() => showDeleteModal(b)}
+                      >
+                        Delete
+                      </Menu.Item>
+                    )}
+                    {showUnarchiveButton && (
+                      <Menu.Item
+                        icon={<IconRestore size={14} />}
+                        onClick={() => unarchiveClicked(b.id)}
+                      >
+                        Restore
+                      </Menu.Item>
+                    )}
+                  </Menu.Dropdown>
+                </Menu>
+              </>
             </Flex>
           </Flex>
         ))}
